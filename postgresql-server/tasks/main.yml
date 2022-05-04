@@ -1,3 +1,23 @@
 ---
 # tasks file for postgresql-server
 
+- name: "Install packages"
+#  dnf:
+  apt:  
+#    name: {{ item }}{{ postgresql_version }}
+    name: postgresql{{ postgresql_version }}-server
+    state: present
+#  with_items:
+#    - postgresql
+#    - postgresql-server
+
+
+
+
+
+#--------------------------------------------
+- name: Start and enable postgresql
+  service: 
+    name: postgresql
+    state: started 
+    enabled: yes
