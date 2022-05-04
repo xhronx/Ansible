@@ -1,0 +1,14 @@
+---
+# for vm3
+- name: Add docker yum gpg
+  rpm_key:
+    key: https://download.docker.com/linux/centos/gpg
+    state: present
+
+- name: Add docker repo
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+#    owner: root
+#    group: root
+#    mode: 0644
