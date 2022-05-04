@@ -1,46 +1,7 @@
-# This is the default ansible 'hosts' file.
-#
-# It should live in /etc/ansible/hosts
-#
-#   - Comments begin with the '#' character
-#   - Blank lines are ignored
-#   - Groups of hosts are delimited by [header] elements
-#   - You can enter hostnames or ip addresses
-#   - A hostname/ip can be a member of multiple groups
-
-# Ex 1: Ungrouped hosts, specify before any group headers.
-
-#green.example.com
-#blue.example.com
-#192.168.100.1
-#192.168.100.10
-
-# Ex 2: A collection of hosts belonging to the 'webservers' group
-
-#[webservers]
-#alpha.example.org
-#beta.example.org
-#192.168.1.100
-#192.168.1.110
-
-# If you have multiple hosts following a pattern you can specify
-# them like this:
-
-#www[001:006].example.com
-
-# Ex 3: A collection of database servers in the 'dbservers' group
-
-#[dbservers]
-#
-#db01.intranet.mydomain.net
-#db02.intranet.mydomain.net
-#10.25.1.56
-#10.25.1.57
-
-# Here's another example of host ranges, this time there are no
-# leading 0s:
-
-#db-[99:101]-node.example.com
+#vm1 ansible_host=51.250.101.198
+vm1 ansible_host=localhost
+vm2 ansible_host=84.201.163.32
+vm3 ansible_host=51.250.16.193
 
 [app]
 vm2 ansible_host=84.201.163.32 ansible_user=xhronx
@@ -49,19 +10,21 @@ vm3 ansible_host=51.250.16.193 ansible_user=xhronx
 
 
 [database]
-vm1 ansible_host=51.250.101.198 ansible_user=xhronx
+#vm1 ansible_host=51.250.101.198 ansible_user=xhronx
+vm1 ansible_host=localhost ansible_connection=local ansible_user=xhronx
 [database:vars]
 
 
 [web]
-vm1 ansible_host=51.250.101.198 ansible_user=xhronx
+#vm1 ansible_host=51.250.101.198 ansible_user=xhronx
+vm1 ansible_host=localhost ansible_connection=local ansible_user=xhronx
 [web:vars]
 
 
 [ALL_SERVERS:children]
-vm1
-vm2
-vm3
+app
+database
+web
 
 [ALL_SERVERS:vars]
 ansible_ssh_private_key_file=/home/xhronx/.ssh/id_rsa
