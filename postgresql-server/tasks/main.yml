@@ -1,10 +1,20 @@
 ---
 # tasks file for postgresql-server
 
-- name: "Install packages"
+- name: Install packages postgresql-server
   apt:  
     name: postgresql-{{ postgresql_version }}
     state: present
+#--------------------------------------------
+
+
+- name: Postgresql environment vars
+  template:
+    src: postgresql.sh.j2
+    dest: /etc/profile.d/postgresql.sh
+    mode: 0644
+  notify: restart
+
 
 
 #--------------------------------------------

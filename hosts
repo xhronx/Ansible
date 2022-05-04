@@ -11,7 +11,6 @@ vm3 ansible_host=51.250.16.193
 [database]
 vm1 ansible_host=localhost ansible_connection=local
 [database:vars]
-#postgresql_version = "12.3"
 postgresql_version = "12"
 postgresql_data_dir = "/var/lib/postgresql/{{ postgresql_version }}/main"
 
