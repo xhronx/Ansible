@@ -2,7 +2,6 @@
 # tasks file for postgresql-server
 
 - name: "Install packages"
-#  dnf:
   apt:  
 #    name: {{ item }}{{ postgresql_version }}
     name: postgresql{{ postgresql_version }}-server
