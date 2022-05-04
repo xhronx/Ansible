@@ -1,20 +1,44 @@
 ---
 # tasks file for docker
 
-- name: Install required system packages
-  ansible.builtin.package:
-    name: 
-#      - apt-transport-https
-      - ca-certificates
-      - curl
-#      - software-properties-common
-      - python3-pip
-      - virtualenv
-      - python3-setuptools
-    state: latest 
-    update_cache: yes
+- include_tasks: ubuntu.yml
+  when: ansible_os_family == 'Debian'
 
-- name: install docker
-  ansible.builtin.package:
+- include_tasks: centos.yml
+  when: ansible_os_family == 'RedHat'
+#------------------------------------
+
+#- name: Install required system packages
+#  package:
+#    name: 
+#      - ca-certificates
+#      - curl
+#      - python3-pip
+#      - virtualenv
+#      - python3-setuptools
+#    state: latest 
+#    update_cache: yes
+
+
+
+- name: Install docker
+  package:
     name: docker-ce
     state: latest
+#    allow_downgrade: true
+  notify: restart
+
+
+
+#-------------------------------
+- name: Docker start and enable
+  service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: User add to docker group
+  user:
+    name: xhronx
+    groups: docker
+    append: true

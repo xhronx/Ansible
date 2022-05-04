@@ -1,0 +1,20 @@
+---
+- name: Adds install
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - gnupg2
+      - curl
+    state: present
+
+- name: Add Docker apt key
+  shell: 
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  
+
+- name: Add docker repository
+  apt_repository:
+    repo: https://download.docker.com/linux/ubuntu/docker-ce.repo
+    state: present
+    update_cache: true
