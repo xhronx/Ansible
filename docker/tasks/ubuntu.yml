@@ -11,10 +11,13 @@
 - name: Add Docker apt key
   shell: 
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  warn: false
+  command_warnings: False
   
 
 - name: Add docker repository
   apt_repository:
-    repo: https://download.docker.com/linux/ubuntu/docker-ce.repo
+#    repo: https://download.docker.com/linux/ubuntu/docker-ce.repo
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
     state: present
     update_cache: true
