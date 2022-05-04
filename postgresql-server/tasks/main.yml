@@ -3,15 +3,8 @@
 
 - name: "Install packages"
   apt:  
-#    name: {{ item }}{{ postgresql_version }}
-    name: postgresql{{ postgresql_version }}-server
+    name: postgresql-{{ postgresql_version }}
     state: present
-#  with_items:
-#    - postgresql
-#    - postgresql-server
-
-
-
 
 
 #--------------------------------------------
