@@ -25,7 +25,7 @@
   package:
     name: docker-ce
     state: latest
-#    allow_downgrade: true
+    allow_downgrade: true
   notify: restart
 
 
