@@ -4,22 +4,19 @@ vm2 ansible_host=84.201.163.32
 vm3 ansible_host=51.250.16.193
 
 [app]
-vm2 ansible_host=84.201.163.32 ansible_user=xhronx
-vm3 ansible_host=51.250.16.193 ansible_user=xhronx
+vm2 ansible_host=84.201.163.32
+vm3 ansible_host=51.250.16.193
 [app:vars]
 
-
 [database]
-#vm1 ansible_host=51.250.101.198 ansible_user=xhronx
-vm1 ansible_host=localhost ansible_connection=local ansible_user=xhronx
+vm1 ansible_host=localhost ansible_connection=local
 [database:vars]
-
+postgresql_version = "12.3"
+postgresql_data_dir = "/var/lib/postgresql/{{ postgresql_version }}/main"
 
 [web]
-#vm1 ansible_host=51.250.101.198 ansible_user=xhronx
-vm1 ansible_host=localhost ansible_connection=local ansible_user=xhronx
+vm1 ansible_host=localhost ansible_connection=local
 [web:vars]
-
 
 [ALL_SERVERS:children]
 app
@@ -27,4 +24,5 @@ database
 web
 
 [ALL_SERVERS:vars]
+ansible_user=xhronx
 ansible_ssh_private_key_file=/home/xhronx/.ssh/id_rsa
